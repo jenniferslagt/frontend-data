@@ -16,7 +16,9 @@ Op basis van mijn concept haal ik 3 variabelen op uit de database:
 2. Aantal wapens (per wapentype)
 3. Herkomst (per wapentype)
 
-## Aan de slag met d3.js
+## Een bar chart maken met d3.js
+
+<b>Hoe werkt deze update function precies?</b>
 
 ## Mijn leerpunten
 

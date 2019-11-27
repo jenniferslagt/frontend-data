@@ -8,7 +8,7 @@ Het museum Volkenkunde heeft ons de opdracht gegeven om een datavisualisatie te 
 De collectie van het wereldmuseum heeft maar liefst 700.000 foto's en objecten. Het is aan mijn de taak om een datavisualisatie te maken die collectiebreed is.
 
 ## Target audience (doelgroep)
-De datavisualisatie is gemaakt voor bezoekers die naar de kleine tentoonstelling komen in 2020. Daarom moet de visualisatie in één oogslag een duidelijk verhaal vertellen die wat zegt over het museum.
+De datavisualisatie is gemaakt voor bezoekers die naar de kleine tentoonstelling komen in 2020. Daarom moet de visualisatie in één oogslag een duidelijk verhaal vertellen die wat zegt over het museum. De mensen die hier naar toe komen zijn voor namelijk geïnteresseerd in de collectie van het museum.
 
 ## Wat haal ik uit mijn database?
 Op basis van mijn concept haal ik 3 variabelen op uit de database:

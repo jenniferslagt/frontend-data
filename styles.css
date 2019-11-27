@@ -1,13 +1,64 @@
-body {
-    background-color: yellow;
+svg {
+    margin-left: 200px;
+    margin-right: 200px;
+    margin-top: 100px;
+    background-color: #3B3838;
+    box-shadow: 10px 5px 10px #121111;
 }
 
-/*
-rect {
-    fill: blue;
+body {
+    background-color: #282828;
 }
-*/
 
 text {
     font-size: 12px;
+    font-family: sans-serif;
 }
+
+svg text {
+    color: #e5e5e5;
+    fill: #e5e5e5;
+}
+
+.title {
+    font-size: 30px;
+    font-weight: bold;
+    font-family: sans-serif;
+    fill: white;
+}
+
+.labels{
+    font-size: 15px;
+    font-family: sans-serif;
+    font-style: italic;
+}
+
+rect {
+    fill: #FF5E00;
+}
+
+rect:hover {
+    opacity: 0.7;
+    transform: translate(10px, 0);
+    transition-duration: 0.3s;
+}
+
+.legend_title {
+    font-weight: bold;
+    font-size: 18px;
+
+}
+
+circle {
+    fill: grey;
+}
+
+
+circle:hover {
+    fill: #FF5E00;
+    cursor: pointer;
+}
+
+
+
+

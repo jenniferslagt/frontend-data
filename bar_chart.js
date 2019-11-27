@@ -1,6 +1,4 @@
-console.log("hoi");
-
-// hieronder wordt de query opgehaald (met behulp van Kris)
+// Hieronder wordt de query opgehaald (met behulp van Kris)
 const mijnQuery = `
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX dc: <http://purl.org/dc/elements/1.1/>
@@ -8,24 +6,30 @@ PREFIX dct: <http://purl.org/dc/terms/>
 PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 PREFIX edm: <http://www.europeana.eu/schemas/edm/>
 PREFIX foaf: <http://xmlns.com/foaf/0.1/>
-
 # tel de materiaalsoorten bij wapens
-SELECT ?typeLabel (COUNT(?cho) AS ?choCount) WHERE {
-# selecteer soorten wapens
-<https://hdl.handle.net/20.500.11840/termmaster12445> skos:narrower* ?type .
-?type skos:prefLabel ?typeLabel .
+SELECT ?typeLabel ?continentLabel (COUNT(?cho) AS ?choCount) WHERE {
 
-# geef objecten van een soort wapen
-?cho edm:object ?type .
+  # selecteer soorten wapens
+  <https://hdl.handle.net/20.500.11840/termmaster12445> skos:narrower*  ?type .
+  ?type skos:prefLabel ?typeLabel .
 
+  # geef objecten van een soort wapen
+  ?cho edm:object ?type .
+  VALUES ?typeLabel {"pijlen" "speren" "bogen (wapens)" "zwaarden" "krissen" "lansen" "dolken" "knotsen" "zwaardstootplaten" "messen (wapens)" }.
+
+  # geef het continent
+  <https://hdl.handle.net/20.500.11840/termmaster2> skos:narrower ?continent .
+  ?continent skos:prefLabel ?continentLabel .
+  ?continent skos:narrower* ?place .
+  ?cho dct:spatial ?place .
 }
-GROUP BY ?typeLabel
+GROUP BY ?typeLabel ?continentLabel
 ORDER BY DESC(?choCount)
-LIMIT 10
 `
 
-const mijnUrl ="https://api.data.netwerkdigitaalerfgoed.nl/datasets/ivo/NMVW/services/NMVW-10/sparql"
+const mijnUrl = "https://api.data.netwerkdigitaalerfgoed.nl/datasets/ivo/NMVW/services/NMVW-10/sparql"
 
+// De opgehaalde data wordt omgezet tot een Json bestand.
 function runQuery(url, query) {
     return fetch(url + "?query=" + encodeURIComponent(query) + "&format=json")
         .then(res => res.json())
@@ -35,68 +39,182 @@ function runQuery(url, query) {
         })
 }
 
-function schoneData(data){
-  return  data.map( result => {
-    return {
-        wapentype: result.typeLabel.value,
-        aantal: Number(result.choCount.value)
-    }
-  })
- }
+// De data wordt opgeschoond, zodat alleen de relevante data wordt weergegeven.
+function schoneData(data) {
+    return data.map(result => {
+        return {
+            wapentype: result.typeLabel.value,
+            continentLabel: result.continentLabel.value,
+            aantal: Number(result.choCount.value)
+        }
+    })
+}
 
 runQuery(mijnUrl, mijnQuery)
     .then(schoneData)
-    .then(resultaten => {
+    .then(resultaten =
+
+// De bar chart wordt aangemaakt en de juiste data wordt meegegeven.
+    function makeBarChart(resultaten) {
+
+        const svg = d3.select("svg")
+        const width = +svg.attr("width")
+        const height = +svg.attr("height");
+
+        const render = data => {
+
+            // De data wordt opgeschoond (wapentypes beginnen nu met een hoofdletter).
+            data = data.map(function(item) {
+
+                item["wapentype"] = item["wapentype"]
+                    .charAt(0)
+                    .toUpperCase() + item["wapentype"]
+                    .slice(1)
+
+                return item
+            });
+
+            const margin = {
+                top: 120,
+                right: 350,
+                bottom: 80,
+                left: 140
+            };
+
+            const innerWidth = width - margin.left - margin.right;
+            const innerHeight = height - margin.top - margin.bottom;
+
+            const xScale = d3.scaleLinear()
+                .domain([0, d3.max(data, d => d.aantal)])
+                .range([0, innerWidth]);
+
+            const xAxis = d3.axisBottom(xScale);
+
+            const yScale = d3.scaleBand()
+                .domain(data.map(d => d.wapentype))
+                .range([0, innerHeight])
+                .padding(0.1);
+
+            const yAxis = d3.axisLeft(yScale);
 
 
-//import { select } from "d3";
-const svg = d3.select("svg")
-const width = +svg.attr("width")
-const height = +svg.attr("height");
+            let g = svg
+                .append("g")
+                .attr("transform", `translate(${margin.left},${margin.top})`);
 
-const render = data => {
+            yAxis(g.append("g"))
+            ;
 
-    const margin = {
-            top: 20,
-            right: 50,
-            bottom: 20,
-            left: 130 };
-    const innerWidth = width - margin.left - margin.right;
-    const innerHeight = height - margin.top - margin.bottom;
+            xAxis(g.append("g")
+                .attr("transform", `translate(0,${innerHeight})`));
 
-    const xScale = d3.scaleLinear()
-        .domain([0, d3.max(data, d => d.aantal)])
-        .range([0, innerWidth]);
+            // Voeg een titel toe.
+            g.append("text")
+                .attr("class", "title")
+                .attr("y", -60)
+                .text("Top 10 wapentypes in de collectie");
 
-    const xAxis = d3.axisBottom(xScale);
+            // Voeg labels toe.
+            g.append("text")
+                .attr("class", "labels")
+                .attr("y", 355)
+                .attr("x", 530)
+                .text("aantal wapens");
 
-    const yScale = d3.scaleBand()
-        .domain(data.map(d => d.wapentype))
-        .range([0, innerHeight])
-        .padding(0.1);
+            g.append("text")
+                .attr("class", "labels")
+                .attr("y", -20)
+                .attr("x", -30)
+                .text("wapentypes");
 
-    const yAxis = d3.axisLeft(yScale);
+            // De bars worden gemaakt.
+            const bars = g.selectAll("rect")
+                .data(data)
+                .enter()
+                .append("rect")
+                .attr("y", d => yScale(d.wapentype))
+                .transition()
+                .delay(function(d, i) {
+                    return i * 100;
+                })
+                .attr("width", d => xScale(d.aantal))
+                .attr("height", yScale.bandwidth());
 
-    const g = svg
-        .append("g")
-        .attr("transform", `translate(${margin.left},${margin.top})`);
+            // Er wordt een legenda toegevoegd waarmee je kan filteren
 
-    yAxis(g.append("g"));
+            g.append("text")
+                .attr("class", "legend_title")
+                .attr("y", -20)
+                .attr("x", 680)
+                .text("Filter op continent");
 
-    xAxis(g.append("g").attr("transform", `translate(0,${innerHeight})`));
+            // De data met continenten worden toegevoegd.
+            const continents = ["Afrika", "Amerika", "Azië", "Eurazië", "Oceanië"]
 
-    g.selectAll("rect")
-        .data(resultaten)
-        .enter()
-        .append("rect")
-        .attr("y", d => yScale(d.wapentype))
-        .attr("width", d => xScale(d.aantal))
-        .attr("height", yScale.bandwidth());
-};
+            // Er wordt een cirkel voor elk continent toegevoegd.
+            svg.selectAll("mydots")
+                .data(continents)
+                .enter()
+                .append("circle")
+                .attr("cx", 830)
+                .attr("cy", function(d, i) {
+                    return 150 + i * 30
+                }) // Het eerste getal geeft locatie van cirkel. 25 is de afstand tussen de cirkels
+                .attr("r", 7)
+                .on('click', function(e) { onClick(e) })
 
-    render(resultaten)
+            // Er wordt één cirkel aan elk continent verbonden.
+            svg.selectAll("mylabels")
+                .data(continents)
+                .enter()
+                .append("text")
+                .attr("x", 855)
+                .attr("y", function(d, i) {
+                    return 150 + i * 30
+                })
+                .text(function(d) {
+                    return d
+                })
+                .attr("text-anchor", "left")
+                .style("alignment-baseline", "middle");
+
+          }
+
+        render(resultaten)
+
+    d3.selectAll("circle")
+        .on("click", function(e) {
+            onClick(e);
+        })
+
+
+
+        function onClick(selectedContinent) {
+
+        const selection = resultaten.filter(resultaat => resultaat.continentLabel == selectedContinent)
+
+        console.log(selection);
+
+              d3.selectAll("g")
+                .remove();
+            d3.selectAll("text")
+            .remove();
+
+               d3.selectAll("svg")
+                .enter()
+                .append("rect")
+                .data(selection);
+
+            d3.selectAll("circle").style("fill", "orange");
+
+
+
+
+            render(selection)
+
+        }
 
     });
 
 
-// Source: Making a Bar Chart with D3.js and SVG [Reloaded] - https://www.youtube.com/watch?v=NlBt-7PuaLk
+// Bron: Making a Bar Chart with D3.js and SVG [Reloaded] - https://www.youtube.com/watch?v=NlBt-7PuaLk

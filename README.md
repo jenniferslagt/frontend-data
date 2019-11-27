@@ -36,12 +36,16 @@ D3.js is een JavaScript library die documenten manipuleert gebaseerd op data (me
 
 ## Bronnen
 * [NMVW-collectie van het museum](https://github.com/jenniferslagt/frontend-data/wiki/Het-concept)
+
+Introductie D3.js en een bar chart maken:
 * [D3.js Data-Driven documents](https://d3js.org/)
 * [Introduction to D3 | D3 in Depth](https://www.d3indepth.com/introduction/)
 * [D3 Gallery examples](https://github.com/d3/d3/wiki/Gallery)
 
+Interactie toevoegen:
 * [D3: Animated Bar Chart](https://bl.ocks.org/jamesleesaunders/f32a8817f7724b17b7f1)
 * [D3.js Graph Gallery | Building legends in d3.js](https://www.d3-graph-gallery.com/graph/custom_legend.html#cont1) (Categorical legend: use a loop)
+* [The General Update Pattern of D3.js](https://www.youtube.com/watch?v=IyIAR65G-GQ&t=212s)
 * [D3js Tutorials: Part 13 - Adding Tooltips To Your Bar Graph](https://www.youtube.com/watch?v=wsCOif7RMBo)
 
 

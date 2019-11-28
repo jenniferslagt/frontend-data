@@ -1,5 +1,5 @@
-## Een interactieve bar chart over wapentypes
-
+## Een interactieve bar chart over wapentypes (gefilterd op herkomst)
+![Schermafbeelding 2019-11-28 om 18 26 24](https://user-images.githubusercontent.com/45489420/69824633-b2fc2d00-120c-11ea-85ac-98e4bf10502c.png)
 
 ## De opdrachtgever 
 Het museum Volkenkunde heeft ons de opdracht gegeven om een datavisualisatie te maken die "collectiebreed" is. Het hoeft juist niet specifiek te zijn, maar het moet te maken hebben met (een groot deel van) de gehele collectie van 700.000 voorwerpen (!). In begin 2020 opent het museum namelijk een kleine tentoonstelling die gaat over de missie en het DNA van het museum. Hierop zal een datavisualisatie gepresenteerd worden.
@@ -20,7 +20,7 @@ Op basis van mijn concept haal ik 3 variabelen op uit de database:
 3. Herkomst (per wapentype)
 
 ## Werken met D3.js
-Om een datavisualisatie te maken, ben ik aan de slag gegaan met D3.js.
+Om een datavisualisatie te maken, ben ik aan de slag gegaan met D3.js. Hierbij heb ik verschillende tutorials / bronnen gebruikt die onderaan de pagina staan. In mijn wiki (Interactie toevoegen met D3.js) heb ik beschreven hoe ik hiermee te werk ben gegaan en wat ik precies weggehaald, veranderd of toegevoegd heb.
 
 ### Wat is D3.js?
 D3.js is een JavaScript library die documenten manipuleert gebaseerd op data (meestal in de vorm van een array met waardes). Je kan er interactieve datavisualisaties (of componenten ervan) maken met JS, HTML, CSS en SVG. D3.js bindt data naar de DOM (Document Object Model) en past dan transformaties toe aan het document. Ook kan je interacties of animaties ermee maken op basis van grote datasets die opgeschoond kunnen worden. 

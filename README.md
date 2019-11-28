@@ -20,7 +20,7 @@ Op basis van mijn concept haal ik 3 variabelen op uit de database:
 2. Aantal wapens (per wapentype): dit wordt op de x-as weergegeven.
 3. Herkomst (per wapentype): verschillende continenten worden weergegeven in de legenda. Hierop kan de gebruiker filteren.
 
-<b>Maar wat gebeurt er met als de gebruiker op een continent heeft geklikt waarbij lege waardes zijn?</b>
+<b>Maar wat gebeurt er met als de gebruiker op een continent heeft geklikt waarbij lege waardes zijn?</b> <br>
 Ik heb het domain zo aangepast, dat de assen optimaal worden weergegeven op basis van de waarden van het wapentype en het aantal. Dit betekent dat de assen telkens veranderden als er gefilterd wordt. Door de update pattern wordt de data aangepast en dus ook het domain. Als er lege waardes zijn (bijvoorbeeld er een bepaald wapentype niet uit Afrika komt), dan wordt deze simpelweg niet weergegeven in de datavisualisatie, omdat het er dan gewoon niet is.
 
 ## Werken met D3.js

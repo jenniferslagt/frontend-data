@@ -1,4 +1,5 @@
 svg {
+    position: absolute;
     margin-left: 200px;
     margin-right: 200px;
     margin-top: 100px;
@@ -9,6 +10,15 @@ svg {
 body {
     background-color: #282828;
 }
+
+img{
+    position: absolute;
+    opacity: 0.4;
+    height: 50px;
+    padding-top: 660px;
+    padding-left: 700px;
+}
+
 
 text {
     font-size: 12px;
@@ -21,10 +31,14 @@ svg text {
 }
 
 .title {
-    font-size: 30px;
+    font-size: 28px;
     font-weight: bold;
-    font-family: sans-serif;
+    font-family: "Arial Narrow";
     fill: white;
+}
+
+.subtitle {
+    font-size: 18px;
 }
 
 .labels{
@@ -46,19 +60,51 @@ rect:hover {
 .legend_title {
     font-weight: bold;
     font-size: 18px;
-
 }
 
 circle {
     fill: grey;
 }
 
-
 circle:hover {
     fill: #FF5E00;
     cursor: pointer;
 }
 
+#continentChange {
+    position: absolute;
+    padding-left: 860px;
+    padding-top: 234px;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: sans-serif;
+    color: #FF5E00;
+}
 
+a {
+    position: absolute;
+    padding-left: 1225px;
+    padding-top: 120px;
+    font-size: 25px;
+    font-weight: bold;
+    font-family: sans-serif;
+    color: #e5e5e5;
+    text-decoration: none;
+}
 
+#name, #source {
+    position: absolute;
+    font-family: sans-serif;
+    font-size: 14px;
+    opacity: 0.5;
+}
 
+#name {
+    padding-top: 660px;
+    padding-left: 200px;
+}
+
+#source {
+    padding-top: 660px;
+    padding-left: 1033px;
+}

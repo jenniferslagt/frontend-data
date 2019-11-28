@@ -251,4 +251,4 @@ runQuery(mijnUrl, mijnQuery)
         });
 
 
-// Bron: Making a Bar Chart with D3.js and SVG [Reloaded] - https://www.youtube.com/watch?v=NlBt-7PuaLk
+// Deze datavisualisatie is opgebouwd door verschillende D3.js tutorials en bronnen te bekijken. Dit staat verder beschreven in mijn wiki.

@@ -26,14 +26,22 @@ Om een datavisualisatie te maken, ben ik aan de slag gegaan met D3.js. Hierbij h
 ### Wat is D3.js?
 D3.js is een JavaScript library die documenten manipuleert gebaseerd op data (meestal in de vorm van een array met waardes). Je kan er interactieve datavisualisaties (of componenten ervan) maken met JS, HTML, CSS en SVG. D3.js bindt data naar de DOM (Document Object Model) en past dan transformaties toe aan het document. Ook kan je interacties of animaties ermee maken op basis van grote datasets die opgeschoond kunnen worden. 
 
-### Hoe werkt deze update function precies?
+### Hoe werkt deze update pattern precies?
 
 [Bekijk hier een uitgebreide uitleg over D3.js en de update pattern](https://github.com/jenniferslagt/frontend-data/wiki/De-D3-update-pattern)
 
 
 
-
 ## Mijn leerpunten
+Afgelopen weken heb ik de volgende punten geleerd:
+* D3.js heeft zijn eigen keywords en deze kunnen het best gebruikt worden als je `d3.` ervoor zet.
+* Met D3.js kan je een svg tekenen in Javascript waar binnen de  datavisualisaties gemaakt wordt.
+* Scale functions worden gebruikt om een bepaalde input (bijvoorbeeld data) te verbinden met een bepaalde output (bijvoorbeeld kleur). Dit bepaald hoe de input wordt weergegeven.
+* Ik heb geleerd om een bar chart te maken die uit verschillende componenten bestaat.
+* Ik weet nu dat ik interactie kan toevoegen m.b.v D3 keywords, bijvoorbeeld events.
+* Ik heb geleerd hoe ik specifieke data kan filteren en selecteren als de gebruiker een bepaalde taak uitvoert.
+* Ik heb geleerd hoe je DOM elementen kan verbinden met data (D3 Data Join). 
+* Data kan veranderd worden in de visualisatie m.b.v een update pattern.
 
 ## Bronnen
 * [NMVW-collectie van het museum](https://github.com/jenniferslagt/frontend-data/wiki/Het-concept)
@@ -48,6 +56,3 @@ Interactie toevoegen:
 * [D3.js Graph Gallery | Building legends in d3.js](https://www.d3-graph-gallery.com/graph/custom_legend.html#cont1) (Categorical legend: use a loop)
 * [The General Update Pattern of D3.js](https://www.youtube.com/watch?v=IyIAR65G-GQ&t=212s)
 * [D3js Tutorials: Part 13 - Adding Tooltips To Your Bar Graph](https://www.youtube.com/watch?v=wsCOif7RMBo)
-
-## Credits
-

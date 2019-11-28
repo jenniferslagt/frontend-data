@@ -27,10 +27,14 @@ Om een datavisualisatie te maken, ben ik aan de slag gegaan met D3.js. Hierbij h
 D3.js is een JavaScript library die documenten manipuleert gebaseerd op data (meestal in de vorm van een array met waardes). Je kan er interactieve datavisualisaties (of componenten ervan) maken met JS, HTML, CSS en SVG. D3.js bindt data naar de DOM (Document Object Model) en past dan transformaties toe aan het document. Ook kan je interacties of animaties ermee maken op basis van grote datasets die opgeschoond kunnen worden. 
 
 ### Hoe werkt deze update pattern precies?
+De update pattern is een proces in D3.js waarbij er data veranderd (waardoor data dynamisch is) wordt. Dit wordt soms ook beschreven als de "D3 Data Join". Hierbij worden er bepaalde data en DOM elementen geselecteerd en met elkaar verbonden. Dit gebeurt in drie delen:
+1. Enter: hierbij worden DOM elementen geselecteerd met `.enter()` gevolgd door `.append()` die toegevoegd moet worden wanneer de array met data langer is dan de DOM elementen. 
+2. Update: dit is het gedeelte waar het aantal data elementen (array) overeen komt met het aantal DOM elementen. Deze worden met elkaar in kaart gebracht.
+3. Exit: hierbij worden er (overgebleven) elementen geselecteerd die weggehaald moeten worden. `exit()` wordt gevolgd door `.remove()`, die daadwerkelijk deze elementen verwijderd.
+
+Kortom: de update pattern zorgt ervoor data dynamisch is (en dus veranderd wordt) doordat het aantal DOM elementen gelijkwaardig wordt gemaakt aan de "nieuwe" data. Dit wordt dan in de kaart gebracht en kan je zien in de datavisualisatie.
 
 [Bekijk hier een uitgebreide uitleg over D3.js en de update pattern](https://github.com/jenniferslagt/frontend-data/wiki/De-D3-update-pattern)
-
-
 
 ## Mijn leerpunten
 Afgelopen weken heb ik de volgende punten geleerd:
@@ -56,4 +60,5 @@ Interactie toevoegen:
 * [D3: Animated Bar Chart](https://bl.ocks.org/jamesleesaunders/f32a8817f7724b17b7f1)
 * [D3.js Graph Gallery | Building legends in d3.js](https://www.d3-graph-gallery.com/graph/custom_legend.html#cont1) (Categorical legend: use a loop)
 * [The General Update Pattern of D3.js](https://www.youtube.com/watch?v=IyIAR65G-GQ&t=212s)
+* [How to work with D3.js’s general update pattern](https://www.freecodecamp.org/news/how-to-work-with-d3-jss-general-update-pattern-8adce8d55418/)
 * [D3js Tutorials: Part 13 - Adding Tooltips To Your Bar Graph](https://www.youtube.com/watch?v=wsCOif7RMBo)

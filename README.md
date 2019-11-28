@@ -50,7 +50,7 @@ Introductie D3.js en een bar chart maken:
 * [D3.js Data-Driven documents](https://d3js.org/)
 * [Introduction to D3 | D3 in Depth](https://www.d3indepth.com/introduction/)
 * [D3 Gallery examples](https://github.com/d3/d3/wiki/Gallery)
-* [Making a Bar Chart with D3.js and SVG [Reloaded]] (https://www.youtube.com/watch?v=NlBt-7PuaLk)
+* Making a Bar Chart with D3.js and SVG [Reloaded]](https://www.youtube.com/watch?v=NlBt-7PuaLk)
 
 Interactie toevoegen:
 * [D3: Animated Bar Chart](https://bl.ocks.org/jamesleesaunders/f32a8817f7724b17b7f1)

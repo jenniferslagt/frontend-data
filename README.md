@@ -1,6 +1,7 @@
 ## Een interactieve bar chart over wapentypes (gefilterd op herkomst)
 ![Schermafbeelding 2019-11-28 om 18 29 31](https://user-images.githubusercontent.com/45489420/69824778-361d8300-120d-11ea-8957-d9941fdf6830.png)
 
+[Bekijk hier de live versie]('https://jenniferslagt.github.io/frontend-data/bar_chart.html') 
 ## De opdrachtgever 
 Het museum Volkenkunde heeft ons de opdracht gegeven om een datavisualisatie te maken die "collectiebreed" is. Het hoeft juist niet specifiek te zijn, maar het moet te maken hebben met (een groot deel van) de gehele collectie van 700.000 voorwerpen (!). In begin 2020 opent het museum namelijk een kleine tentoonstelling die gaat over de missie en het DNA van het museum. Hierop zal een datavisualisatie gepresenteerd worden.
 
